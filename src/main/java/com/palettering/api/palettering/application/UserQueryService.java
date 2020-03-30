@@ -1,14 +1,14 @@
 package com.palettering.api.palettering.application;
 
-import com.palettering.api.palettering.domain.member.MemberRespository;
+import com.palettering.api.palettering.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 
 @Service
-public class MemberQueryService {
+public class UserQueryService {
 
-    private final MemberRespository memberRepository;
+    private final UserRepository userRepository;
 
 }
