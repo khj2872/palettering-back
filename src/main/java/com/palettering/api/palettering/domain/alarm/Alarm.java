@@ -18,13 +18,12 @@ public class Alarm extends CreatedTimeEntity {
     //알람 PK
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ALARM_ID")
+    @Column(name = "ALARM_ID", nullable = false)
     private Long id;
 
     //액션 취하는 주체
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "UID")
-    @Column(nullable = false)
     private User user;
 
     //알람 타입
@@ -33,7 +32,6 @@ public class Alarm extends CreatedTimeEntity {
     //받는 회원 PK
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TARGET_UID")
-    @Column(nullable = false)
     private User targetUser;
 
     //알람 확인 여부(보지 않았으면 0, 봤으면 1)
