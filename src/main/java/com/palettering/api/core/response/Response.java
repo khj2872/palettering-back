@@ -1,10 +1,13 @@
 package com.palettering.api.core.response;
 
-import lombok.Data;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.ToString;
 
 import static javax.servlet.http.HttpServletResponse.SC_OK;
 
-@Data
+@Getter
+@ToString
 public class Response<T> {
 
     private int code;
@@ -17,6 +20,7 @@ public class Response<T> {
         this(null);
     }
 
+    @Builder
     public Response(T data) {
         this.code = SC_OK;
         this.message = "SUCCESS";
