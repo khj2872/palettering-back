@@ -12,6 +12,18 @@ public class FollowDTO {
 
     @Builder
     @Getter
+    public static class Create {
+        private Long id;
+        private String uid;
+        private String targetUid;
+        private String userId;
+        private String targetId;
+        private int status;
+
+    }
+
+    @Builder
+    @Getter
     public static class GetFollowList {
         private List<User> follows;
         @Builder
