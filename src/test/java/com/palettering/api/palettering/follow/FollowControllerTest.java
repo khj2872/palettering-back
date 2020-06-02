@@ -9,6 +9,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -85,7 +87,7 @@ public class FollowControllerTest {
         userRepository.save(targetUser);
         Follow follow = followService.createFollow("aowcwacwa", "lmcwocmaw");
 
-        List<Follow> followers = followService.getFollowers("nick_yu._.gyu");
+        Page<Follow> followers = followService.getFollowers("nick_yu._.gyu", PageRequest.of(0, 5));
         List<FollowDTO.GetFollowList.User> followerList = followers.stream()
                 .map(follows ->
                         FollowDTO.GetFollowList.User
@@ -121,7 +123,7 @@ public class FollowControllerTest {
         userRepository.save(user);
         userRepository.save(targetUser);
         Follow follow = followService.createFollow("lmcwocmaw", "aowcwacwa");
-        List<Follow> followers = followService.getFollowings("nick_yu._.gyu");
+        Page<Follow> followers = followService.getFollowings("nick_yu._.gyu", PageRequest.of(0, 5));
         List<FollowDTO.GetFollowList.User> followingList = followers.stream()
                 .map(follows ->
                         FollowDTO.GetFollowList.User

@@ -4,9 +4,9 @@ import com.palettering.api.palettering.follow.domain.Follow;
 import com.palettering.api.palettering.follow.repository.FollowRepository;
 import com.palettering.api.palettering.user.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -14,12 +14,13 @@ public class FollowService {
     private final FollowRepository followRepository;
     private final UserRepository userRepository;
 
-    public List<Follow> getFollowers(String id) {
-        return followRepository.findByUser_id(id);
+    public Page<Follow> getFollowers(String id, Pageable pageable) {
+        return followRepository.findByUser_id(id, pageable);
     }
 
-    public List<Follow> getFollowings(String id) {
-        return followRepository.findByTargetUser_id(id);
+    public Page<Follow> getFollowings(String id, Pageable pageable) {
+
+        return followRepository.findByTargetUser_id(id, pageable);
     }
 
     public Follow createFollow(String uid, String targetUid) {

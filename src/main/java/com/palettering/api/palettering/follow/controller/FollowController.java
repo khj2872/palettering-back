@@ -5,6 +5,10 @@ import com.palettering.api.palettering.follow.domain.Follow;
 import com.palettering.api.palettering.follow.model.FollowDTO;
 import com.palettering.api.palettering.follow.service.FollowService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -21,8 +25,8 @@ public class FollowController {
 
     // 팔로워 정보
     @GetMapping(value = "/{id}/follower")
-    public Response<FollowDTO.GetFollowList> getFollowers(@PathVariable String id){
-        List<Follow> followers = followService.getFollowers(id);
+    public Response<FollowDTO.GetFollowList> getFollowers(@PathVariable String id, @PageableDefault(size = 5, sort = "createDate", direction = Sort.Direction.DESC) Pageable pageable){
+        Page<Follow> followers = followService.getFollowers(id, pageable);
         List<FollowDTO.GetFollowList.User> followerList = followers.stream()
                 .map(follow ->
                         FollowDTO.GetFollowList.User
@@ -42,8 +46,8 @@ public class FollowController {
 
     // 팔로잉 정보
     @GetMapping(value = "/{id}/following")
-    public Response<FollowDTO.GetFollowList> getFollowings(@PathVariable String id){
-        List<Follow> followings = followService.getFollowings(id);
+    public Response<FollowDTO.GetFollowList> getFollowings(@PathVariable String id, @PageableDefault(size = 5, sort = "createDate", direction = Sort.Direction.DESC) Pageable pageable){
+        Page<Follow> followings = followService.getFollowings(id, pageable);
         List<FollowDTO.GetFollowList.User> followingList = followings.stream()
                 .map(follow ->
                         FollowDTO.GetFollowList.User
