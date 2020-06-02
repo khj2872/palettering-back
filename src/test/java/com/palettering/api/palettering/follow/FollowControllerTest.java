@@ -27,7 +27,8 @@ public class FollowControllerTest {
     private FollowService followService;
 
     @Test
-    public void 팔로우_유저_생성_및_팔로우_정보_생성() {
+    @Transactional
+    public void 팔로우_정보_생성() {
         // given
         User user = User.builder()
                 .uid("aowcwacwa")
@@ -65,9 +66,25 @@ public class FollowControllerTest {
 
     @Test
     @Transactional
-    public void 팔로잉_팔로워_리스트_조회() {
+    public void 팔로워_리스트_조회() {
+        // given
+        User user = User.builder()
+                .uid("aowcwacwa")
+                .email("yhg8484@naver.com")
+                .socialType(0)
+                .id("nick_yu._.gyu")
+                .build();
+        User targetUser = User.builder()
+                .uid("lmcwocmaw")
+                .email("dbgusrb12@gmail.com")
+                .socialType(0)
+                .id("yu._.gyu")
+                .build();
         // when
-//        Follow follow = followService.createFollow("aowcwacwa", "lmcwocmaw");
+        userRepository.save(user);
+        userRepository.save(targetUser);
+        Follow follow = followService.createFollow("aowcwacwa", "lmcwocmaw");
+
         List<Follow> followers = followService.getFollowers("nick_yu._.gyu");
         List<FollowDTO.GetFollowList.User> followerList = followers.stream()
                 .map(follows ->
@@ -87,7 +104,22 @@ public class FollowControllerTest {
     @Test
     @Transactional
     public void 팔로잉_리스트_조회() {
+        // given
+        User user = User.builder()
+                .uid("aowcwacwa")
+                .email("yhg8484@naver.com")
+                .socialType(0)
+                .id("nick_yu._.gyu")
+                .build();
+        User targetUser = User.builder()
+                .uid("lmcwocmaw")
+                .email("dbgusrb12@gmail.com")
+                .socialType(0)
+                .id("yu._.gyu")
+                .build();
         // when
+        userRepository.save(user);
+        userRepository.save(targetUser);
         Follow follow = followService.createFollow("lmcwocmaw", "aowcwacwa");
         List<Follow> followers = followService.getFollowings("nick_yu._.gyu");
         List<FollowDTO.GetFollowList.User> followingList = followers.stream()
