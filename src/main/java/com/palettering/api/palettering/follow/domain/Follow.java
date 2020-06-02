@@ -5,12 +5,13 @@ import com.palettering.api.palettering.user.user.domain.User;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 
 @Entity
-public class Follow extends BaseTimeEntity {
+public class Follow extends BaseTimeEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
