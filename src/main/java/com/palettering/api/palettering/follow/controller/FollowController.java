@@ -23,7 +23,6 @@ public class FollowController {
     @GetMapping(value = "/{id}/follower")
     public Response<FollowDTO.GetFollowList> getFollowers(@PathVariable String id){
         List<Follow> followers = followService.getFollowers(id);
-//        List<FollowDTO.GetFollowList.User> followerList = FollowDTO.GetFollowList.followList(followers);
         List<FollowDTO.GetFollowList.User> followerList = followers.stream()
                 .map(follow ->
                         FollowDTO.GetFollowList.User
@@ -45,7 +44,6 @@ public class FollowController {
     @GetMapping(value = "/{id}/following")
     public Response<FollowDTO.GetFollowList> getFollowings(@PathVariable String id){
         List<Follow> followings = followService.getFollowings(id);
-//        List<FollowDTO.GetFollowList.User> followingList = FollowDTO.GetFollowList.followList(followings);
         List<FollowDTO.GetFollowList.User> followingList = followings.stream()
                 .map(follow ->
                         FollowDTO.GetFollowList.User
