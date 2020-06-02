@@ -31,6 +31,7 @@ public class FollowService {
                         .builder()
                         .user(userRepository.findById(uid).orElseThrow(IllegalAccessError::new))
                         .targetUser(userRepository.findById(targetUid).orElseThrow(IllegalAccessError::new))
+                        .status(1)  // 무조건 수락을 가정하고 만듬
                         .build()
         );
 

@@ -30,6 +30,7 @@ public class FollowDTO {
             private String uid;
             private String image;
             private String id;
+            private int status;
         }
     }
 }

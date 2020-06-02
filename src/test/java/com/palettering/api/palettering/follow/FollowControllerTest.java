@@ -95,12 +95,14 @@ public class FollowControllerTest {
                                 .uid(follows.getTargetUser().getUid())
                                 .id(follows.getTargetUser().getId())
                                 .image(follows.getTargetUser().getImage())
+                                .status(follows.getStatus())
                                 .build())
                 .collect(Collectors.toList());
 
         // then
         assertThat(followerList.size()).isEqualTo(1);
         assertThat(followerList.get(0).getId()).isEqualTo("yu._.gyu");
+        assertThat(followerList.get(0).getStatus()).isEqualTo(0);
     }
 
     @Test
@@ -124,6 +126,7 @@ public class FollowControllerTest {
         userRepository.save(targetUser);
         Follow follow = followService.createFollow("lmcwocmaw", "aowcwacwa");
         Page<Follow> followers = followService.getFollowings("nick_yu._.gyu", PageRequest.of(0, 5));
+
         List<FollowDTO.GetFollowList.User> followingList = followers.stream()
                 .map(follows ->
                         FollowDTO.GetFollowList.User
@@ -131,11 +134,13 @@ public class FollowControllerTest {
                                 .uid(follows.getUser().getUid())
                                 .id(follows.getUser().getId())
                                 .image(follows.getUser().getImage())
+                                .status(follows.getStatus())
                                 .build())
                 .collect(Collectors.toList());
         // then
         assertThat(followingList.size()).isEqualTo(1);
         assertThat(followingList.get(0).getId()).isEqualTo("yu._.gyu");
+        assertThat(followingList.get(0).getStatus()).isEqualTo(0);
     }
 
 }

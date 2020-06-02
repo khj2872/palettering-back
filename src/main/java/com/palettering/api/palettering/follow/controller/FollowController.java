@@ -34,6 +34,7 @@ public class FollowController {
                                 .uid(follow.getTargetUser().getUid())
                                 .id(follow.getTargetUser().getId())
                                 .image(follow.getTargetUser().getImage())
+                                .status(follow.getStatus())
                                 .build())
                 .collect(Collectors.toList());
         return new Response<>(
@@ -55,6 +56,7 @@ public class FollowController {
                                 .uid(follow.getUser().getUid())
                                 .id(follow.getUser().getId())
                                 .image(follow.getUser().getImage())
+                                .status(follow.getStatus())
                                 .build())
                 .collect(Collectors.toList());
         return new Response<>(
@@ -81,5 +83,7 @@ public class FollowController {
                         .build()
         );
     }
+
+
 
 }
