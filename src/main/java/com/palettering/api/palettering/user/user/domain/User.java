@@ -49,7 +49,10 @@ public class User extends BaseTimeEntity {
     private List<StoryReadUser> storyReadUsers = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
-    private List<Follow> follows = new ArrayList<>();
+    private List<Follow> followers = new ArrayList<>();
+
+    @OneToMany(mappedBy = "targetUser")
+    private List<Follow> followings = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
     private List<Report> reports = new ArrayList<>();
@@ -108,7 +111,7 @@ public class User extends BaseTimeEntity {
     @Builder
     public User(String uid, UserPreference userPreference, List<Post> posts,
                 List<Bookmark> bookmarks, List<Story> stories, List<StoryReadUser> storyReadUsers,
-                List<Follow> follows, List<Report> reports, List<PostLike> postLikes,
+                List<Follow> followers, List<Follow> followings, List<Report> reports, List<PostLike> postLikes,
                 List<Reply> replies, List<ReplyLike> replyLikes, List<ReplyFriend> replyFriends,
                 List<PostFriend> postFriends, List<Alarm> alarms, int socialType,
                 String socialId, String email, String password,
@@ -121,7 +124,8 @@ public class User extends BaseTimeEntity {
         this.bookmarks = bookmarks;
         this.stories = stories;
         this.storyReadUsers = storyReadUsers;
-        this.follows = follows;
+        this.followers = followers;
+        this.followings = followings;
         this.reports = reports;
         this.postLikes = postLikes;
         this.replies = replies;

@@ -15,5 +15,5 @@ public abstract class CreatedTimeEntity {
 
     @CreatedDate
     private LocalDateTime createdDate;
-    
+
 }

@@ -2,7 +2,10 @@ package com.palettering.api.palettering.follow.domain;
 
 import com.palettering.api.palettering.BaseTimeEntity;
 import com.palettering.api.palettering.user.user.domain.User;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -10,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 
 @Entity
-public class Follow extends BaseTimeEntity {
+public class Follow extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
